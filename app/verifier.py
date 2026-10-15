@@ -16,6 +16,7 @@ class State(str, Enum):
 class Result:
     state: State
     explanation: str
+    observed_sha256: str | None = None
 
 
 def verify_artifact(path: str, expected_sha256: str | None) -> Result:
@@ -47,11 +48,13 @@ def verify_artifact(path: str, expected_sha256: str | None) -> Result:
     if digest != expected_sha256.lower():
         return Result(
             State.MISMATCH,
-            "Artifact SHA-256 does not match the supplied reference."
+            "Artifact SHA-256 does not match the supplied reference.",
+            digest,
         )
 
     return Result(
         State.VALID,
         "Artifact bytes match the supplied SHA-256 reference. "
-        "Runtime behavior and production readiness are not established."
+        "Runtime behavior and production readiness are not established.",
+        digest,
     )
