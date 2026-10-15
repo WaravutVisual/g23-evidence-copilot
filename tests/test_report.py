@@ -50,5 +50,33 @@ class ReportTests(unittest.TestCase):
             self.assertEqual(report["verification"]["state"], "MISMATCH")
 
 
+    def test_missing_reference_remains_unknown_in_report(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "artifact.bin"
+            path.write_bytes(b"test bytes")
+            provenance = ProvenanceRecord(
+                source_name="test source",
+                source_type="test",
+            )
+
+            report = build_report(str(path), None, provenance)
+
+            self.assertEqual(report["verification"]["state"], "UNKNOWN")
+            self.assertIsNone(report["artifact"]["reference_sha256"])
+            self.assertFalse(report["artifact"]["reference_format_valid"])
+
+    def test_directory_path_remains_corrupted_in_report(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            provenance = ProvenanceRecord(
+                source_name="test source",
+                source_type="test",
+            )
+
+            report = build_report(tmp, "a" * 64, provenance)
+
+            self.assertEqual(report["verification"]["state"], "CORRUPTED")
+            self.assertIsNone(report["artifact"]["observed_sha256"])
+
+
 if __name__ == "__main__":
     unittest.main()
