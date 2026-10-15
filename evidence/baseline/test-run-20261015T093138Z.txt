@@ -1,0 +1,37 @@
+G23 UNIT TEST EVIDENCE
+UTC_TIME=2026-10-15T09:31:38Z
+REPOSITORY=/data/data/com.termux/files/home/g23-evidence-copilot
+BRANCH=main
+HEAD_BEFORE=b2954ec484b08c1448ea9c4ae96db15f15e41e56
+
+=== PATCH CHECK ===
+DIFF_CHECK_EXIT=0
+
+=== UNIT TESTS ===
+test_declared_source_is_not_verified (tests.test_provenance.ProvenanceTests.test_declared_source_is_not_verified) ... ok
+test_directory_path_remains_corrupted_in_report (tests.test_report.ReportTests.test_directory_path_remains_corrupted_in_report) ... ok
+test_mismatch_is_not_upgraded (tests.test_report.ReportTests.test_mismatch_is_not_upgraded) ... ok
+test_missing_reference_remains_unknown_in_report (tests.test_report.ReportTests.test_missing_reference_remains_unknown_in_report) ... ok
+test_report_preserves_claim_limits (tests.test_report.ReportTests.test_report_preserves_claim_limits) ... ok
+test_corrupted_evidence_path (tests.test_verifier.VerifierTests.test_corrupted_evidence_path) ... ok
+test_invalid_reference_format (tests.test_verifier.VerifierTests.test_invalid_reference_format) ... ok
+test_mismatched_artifact (tests.test_verifier.VerifierTests.test_mismatched_artifact) ... ok
+test_missing_evidence (tests.test_verifier.VerifierTests.test_missing_evidence) ... ok
+test_missing_reference (tests.test_verifier.VerifierTests.test_missing_reference) ... ok
+test_valid_evidence (tests.test_verifier.VerifierTests.test_valid_evidence) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.008s
+
+OK
+UNIT_TEST_EXIT=0
+
+=== HEAD AFTER ===
+b2954ec484b08c1448ea9c4ae96db15f15e41e56
+
+=== WORKING TREE AFTER ===
+## main...origin/main
+?? evidence/
+
+=== TEST SUMMARY ===
+UNIT_TEST_RESULT=PASS

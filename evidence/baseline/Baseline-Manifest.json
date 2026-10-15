@@ -1,0 +1,37 @@
+{
+  "manifest_version": "1.0",
+  "manifest_status": "BASELINE_RECORDED",
+  "created_utc": "2026-10-15T09:36:26.413447+00:00",
+  "project": "G23 Evidence Copilot",
+  "baseline_scope": [
+    "source_commit_identity",
+    "recorded_unit_test_result",
+    "recorded_patch_check_result"
+  ],
+  "source": {
+    "git_branch": "main",
+    "git_commit": "b2954ec484b08c1448ea9c4ae96db15f15e41e56"
+  },
+  "test_evidence": {
+    "report_path": "evidence/baseline/test-run-20261015T093138Z.txt",
+    "report_sha256": "036aababa596ca5eadd8b1438e479e0294cdde3d0de3d7be23c3c721a78f2047",
+    "unit_test_command": "python -m unittest discover -v",
+    "unit_test_count": 11,
+    "unit_test_result": "PASS",
+    "unit_test_exit_code": 0,
+    "patch_check": "PASS",
+    "patch_check_exit_code": 0
+  },
+  "verification": {
+    "report_sha256_match": true,
+    "head_match": true,
+    "required_test_records_present": true
+  },
+  "limitations": [
+    "Records the observed test run; does not prove all possible cases pass.",
+    "Does not establish runtime correctness.",
+    "Does not establish Meta Model API integration.",
+    "Does not establish production readiness or security certification.",
+    "Manifest creation does not imply that the manifest has been committed or independently audited."
+  ]
+}

@@ -1,0 +1,54 @@
+G23 BASELINE RECONNAISSANCE
+UTC_TIME=2026-10-15T09:28:01Z
+
+=== REPOSITORY ===
+/data/data/com.termux/files/home/g23-evidence-copilot
+
+=== BRANCH ===
+main
+
+=== HEAD ===
+b2954ec484b08c1448ea9c4ae96db15f15e41e56
+
+=== LATEST COMMITS ===
+b2954ec484b08c1448ea9c4ae96db15f15e41e56
+2026-10-15T15:27:46+07:00
+Add local real-time evidence dashboard
+597cffcd6de9b67cc277c59f40fbc891c1ff5fb3
+2026-10-15T09:24:43+07:00
+Test report handling for unknown and corrupted states
+11fbd217495a4d7a0530752fef41d8c438cc1a59
+2026-10-15T09:21:52+07:00
+Add provenance metadata and verification reports
+468d55bcb7e5dfdfb72234cd2533c49168cdc75d
+2026-10-15T09:09:55+07:00
+Build deterministic G23 evidence verifier MVP
+
+=== WORKING TREE ===
+## main...origin/main
+?? evidence/
+
+=== TRACKED PROJECT FILES ===
+.gitignore
+README.md
+app/__init__.py
+app/cli.py
+app/dashboard.py
+app/provenance.py
+app/report.py
+app/verifier.py
+tests/__init__.py
+tests/test_provenance.py
+tests/test_report.py
+tests/test_verifier.py
+
+=== TEST CONFIGURATION CANDIDATES ===
+./README.md
+
+=== PYTHON VERSION ===
+Python 3.14.6
+
+=== TEST FILE CANDIDATES ===
+./tests/test_verifier.py
+./tests/test_provenance.py
+./tests/test_report.py
