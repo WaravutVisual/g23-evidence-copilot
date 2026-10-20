@@ -31,6 +31,15 @@ jobs:
           git rev-parse HEAD
           git status --short --branch
 
+      - name: Assert clean checkout
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "CLEAN_CHECKOUT: FAIL"
+            git status --short
+            exit 1
+          fi
+          echo "CLEAN_CHECKOUT: PASS"
+
       - name: Run all unit tests
         run: python -m unittest discover -s tests -v
 
