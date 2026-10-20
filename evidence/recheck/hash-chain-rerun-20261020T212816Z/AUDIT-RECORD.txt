@@ -1,0 +1,23 @@
+G23 HASH CHAIN CLI RERUN AUDIT
+
+UTC_TIME=20261020T212816Z
+BRANCH=main
+HEAD_COMMIT=7e3e18cb1cf5c920167ad0bb4714c56e7df9bcbc
+EXPECTED_HEAD=003e5488eebe80a2bb0093517a87b7cd6055bef406c27ece06e9282de17107d4
+
+BASELINE_STATE=VALID
+BASELINE_EXIT=0
+
+TAMPER_STATE=MISMATCH
+TAMPER_EXIT=1
+
+RESTORE_STATE=VALID
+RESTORE_EXIT=0
+RESTORE_BYTES_MATCH=YES
+ORIGINAL_AND_RESTORED_SHA256=70928f5d9fa19d7f05f3d0334fa71113d08a636074d976c34d64a13d2d3f2857
+
+CLAIM_LIMITS:
+This run confirms the observed CLI behavior for this two-entry demo fixture.
+It does not establish source authenticity, timestamp authenticity,
+claim truth, resistance to every attack, or production readiness.
+The earlier manifest mismatch remains unresolved and is not repaired by this run.

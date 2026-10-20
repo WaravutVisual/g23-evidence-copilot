@@ -1,0 +1,5 @@
+{
+  "state": "MISMATCH",
+  "explanation": "Entry 2 hash does not match its contents.",
+  "observed_sha256": null
+}
