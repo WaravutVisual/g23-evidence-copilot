@@ -179,9 +179,16 @@ def verify_hash_chain(path, expected_head=None):
 def main(argv=None):
     parser = argparse.ArgumentParser(description="Verify a G23 SHA-256 hash chain.")
     parser.add_argument("path", help="JSON chain file")
+    parser.add_argument(
+        "--expected-head",
+        help="Trusted SHA-256 hash of the expected final chain entry.",
+    )
     args = parser.parse_args(argv)
 
-    result = verify_hash_chain(args.path)
+    result = verify_hash_chain(
+        args.path,
+        expected_head=args.expected_head,
+    )
     print(json.dumps({
         "state": result.state.value,
         "explanation": result.explanation,
