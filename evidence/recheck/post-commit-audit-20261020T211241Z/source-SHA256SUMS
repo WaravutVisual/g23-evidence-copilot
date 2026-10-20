@@ -1,0 +1,2 @@
+bf9db5f47b8ace982ce1cf0ca9074581d0749c6ffac44e29f0d059a0adb7c266  app/hash_chain.py
+37e85347cba45caac692098e0c6e83b3c066b6ec1b45f7a6a7fdc8cb1b6818c4  tests/test_hash_chain_cli.py

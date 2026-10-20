@@ -1,0 +1,13 @@
+G23 POST-COMMIT AUDIT
+Timestamp UTC: 20261020T211241Z
+Repository: WaravutVisual/g23-evidence-copilot
+HEAD: 7e1ae0fb2b95467d0b0ddb4c7ae8e2d6bdc97459
+Origin main: 7e1ae0fb2b95467d0b0ddb4c7ae8e2d6bdc97459
+Expected commit: 7e1ae0fb2b95467d0b0ddb4c7ae8e2d6bdc97459
+Test command: python -m pytest -q
+Test exit code: 0
+Source hash manifest: source-SHA256SUMS
+Test log: test-run.log
+Scope: local post-commit verification
+Limitations: This record does not establish source authenticity,
+production readiness, or complete tamper-and-restore verification.
