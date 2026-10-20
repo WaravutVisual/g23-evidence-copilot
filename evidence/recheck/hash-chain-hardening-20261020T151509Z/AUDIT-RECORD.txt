@@ -1,0 +1,23 @@
+G23 Hash Chain Hardening Audit
+Audit ID: hash-chain-hardening-20261020T151509Z
+Recorded UTC: 20261020T151509Z
+Base Git HEAD: d585adcb6633d48379b7217e4b4e7f7f1761a9c1
+Full test exit code: 0
+
+Scope:
+- Hash-chain schema validation
+- Trusted expected-head validation
+- Truncation detection when a trusted expected head is supplied
+- Legacy test fixtures updated to Schema v1
+
+Evidence:
+- test-run.log records the full unittest output.
+- test-exit-code.txt records the actual test process exit code.
+- source-SHA256SUMS records hashes of the reviewed source, tests, and demo.
+
+Claim limits:
+- Test success establishes only that the recorded test suite passed.
+- Hash consistency does not establish source authenticity or claim truth.
+- Truncation detection depends on an independently trusted expected head.
+- Production readiness has not been established.
+- This record does not replace or modify any previous audit evidence.

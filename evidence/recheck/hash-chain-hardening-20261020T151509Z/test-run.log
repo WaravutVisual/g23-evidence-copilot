@@ -1,0 +1,33 @@
+test_malformed_json_is_corrupted (tests.test_hash_chain.HashChainTests.test_malformed_json_is_corrupted) ... ok
+test_missing_entries_collection_is_unknown (tests.test_hash_chain.HashChainTests.test_missing_entries_collection_is_unknown) ... ok
+test_missing_file_is_unknown (tests.test_hash_chain.HashChainTests.test_missing_file_is_unknown) ... ok
+test_non_array_entries_are_corrupted (tests.test_hash_chain.HashChainTests.test_non_array_entries_are_corrupted) ... ok
+test_payload_tampering_is_detected (tests.test_hash_chain.HashChainTests.test_payload_tampering_is_detected) ... ok
+test_placeholder_is_never_valid (tests.test_hash_chain.HashChainTests.test_placeholder_is_never_valid) ... ok
+test_previous_link_tampering_is_detected (tests.test_hash_chain.HashChainTests.test_previous_link_tampering_is_detected) ... ok
+test_sequence_gap_is_unknown (tests.test_hash_chain.HashChainTests.test_sequence_gap_is_unknown) ... ok
+test_tamper_then_restore (tests.test_hash_chain.HashChainTests.test_tamper_then_restore) ... ok
+test_valid_chain (tests.test_hash_chain.HashChainTests.test_valid_chain) ... ok
+test_malformed_trusted_head_is_corrupted (tests.test_hash_chain_hardening.HashChainHardeningTests.test_malformed_trusted_head_is_corrupted) ... ok
+test_matching_trusted_head_is_valid (tests.test_hash_chain_hardening.HashChainHardeningTests.test_matching_trusted_head_is_valid) ... ok
+test_missing_schema_version_is_unknown (tests.test_hash_chain_hardening.HashChainHardeningTests.test_missing_schema_version_is_unknown) ... ok
+test_schema_v1_is_supported (tests.test_hash_chain_hardening.HashChainHardeningTests.test_schema_v1_is_supported) ... ok
+test_truncation_with_trusted_head_is_mismatch (tests.test_hash_chain_hardening.HashChainHardeningTests.test_truncation_with_trusted_head_is_mismatch) ... ok
+test_unsupported_schema_version_is_corrupted (tests.test_hash_chain_hardening.HashChainHardeningTests.test_unsupported_schema_version_is_corrupted) ... ok
+test_wrong_trusted_head_is_mismatch (tests.test_hash_chain_hardening.HashChainHardeningTests.test_wrong_trusted_head_is_mismatch) ... ok
+test_declared_source_is_not_verified (tests.test_provenance.ProvenanceTests.test_declared_source_is_not_verified) ... ok
+test_directory_path_remains_corrupted_in_report (tests.test_report.ReportTests.test_directory_path_remains_corrupted_in_report) ... ok
+test_mismatch_is_not_upgraded (tests.test_report.ReportTests.test_mismatch_is_not_upgraded) ... ok
+test_missing_reference_remains_unknown_in_report (tests.test_report.ReportTests.test_missing_reference_remains_unknown_in_report) ... ok
+test_report_preserves_claim_limits (tests.test_report.ReportTests.test_report_preserves_claim_limits) ... ok
+test_corrupted_evidence_path (tests.test_verifier.VerifierTests.test_corrupted_evidence_path) ... ok
+test_invalid_reference_format (tests.test_verifier.VerifierTests.test_invalid_reference_format) ... ok
+test_mismatched_artifact (tests.test_verifier.VerifierTests.test_mismatched_artifact) ... ok
+test_missing_evidence (tests.test_verifier.VerifierTests.test_missing_evidence) ... ok
+test_missing_reference (tests.test_verifier.VerifierTests.test_missing_reference) ... ok
+test_valid_evidence (tests.test_verifier.VerifierTests.test_valid_evidence) ... ok
+
+----------------------------------------------------------------------
+Ran 28 tests in 0.029s
+
+OK

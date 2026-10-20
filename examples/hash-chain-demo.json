@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "sequence": 1,
+      "payload": {
+        "event": "demo_created",
+        "artifact": "sample.txt"
+      },
+      "previous_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "entry_hash": "ae37a8145a6f990fddf04f2bf970a65fb292ac4ee3006b61574fc3a890f28f54"
+    },
+    {
+      "sequence": 2,
+      "payload": {
+        "event": "demo_checked",
+        "result": "VALID"
+      },
+      "previous_hash": "ae37a8145a6f990fddf04f2bf970a65fb292ac4ee3006b61574fc3a890f28f54",
+      "entry_hash": "003e5488eebe80a2bb0093517a87b7cd6055bef406c27ece06e9282de17107d4"
+    }
+  ]
+}
