@@ -1,0 +1,57 @@
+name: G23 Verification
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Record clean checkout
+        run: |
+          python --version
+          git rev-parse HEAD
+          git status --short --branch
+
+      - name: Run all unit tests
+        run: python -m unittest discover -s tests -v
+
+      - name: Verify demo against trusted head
+        run: |
+          python - <<'PY'
+          from app.hash_chain import verify_hash_chain
+          from app.verifier import State
+
+          path = "examples/hash-chain-demo.json"
+          trusted_head = (
+              "003e5488eebe80a2bb0093517a87b7cd"
+              "6055bef406c27ece06e9282de17107d4"
+          )
+
+          good = verify_hash_chain(path, trusted_head)
+          print("EXPECTED_HEAD_CHECK:", good.state.value)
+          assert good.state == State.VALID, good.explanation
+
+          wrong_head = "f" * 64
+          bad = verify_hash_chain(path, wrong_head)
+          print("WRONG_HEAD_CHECK:", bad.state.value)
+          assert bad.state == State.MISMATCH, bad.explanation
+          PY
