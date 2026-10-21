@@ -1,0 +1,91 @@
+[PASS] baseline: expected=VALID, observed=VALID, exit=0
+[PASS] tamper: expected=MISMATCH, observed=MISMATCH, exit=1
+[PASS] restore: expected=VALID, observed=VALID, exit=0
+[PASS] missing-file: expected=UNKNOWN, observed=UNKNOWN, exit=1
+[PASS] malformed-json: expected=CORRUPTED, observed=CORRUPTED, exit=1
+[PASS] restore bytes unchanged
+[PASS] source fixture unchanged
+
+=== SCENARIO LOG ===
+CASE=baseline
+EXPECTED=VALID
+OBSERVED=VALID
+EXIT_CODE=0
+PASS=True
+STDOUT:
+{
+  "state": "VALID",
+  "explanation": "Hash chain internally consistent (2 entries). Source authenticity, claim truth, runtime behavior, and production readiness are not established.",
+  "observed_sha256": "003e5488eebe80a2bb0093517a87b7cd6055bef406c27ece06e9282de17107d4"
+}
+
+STDERR:
+
+
+CASE=tamper
+EXPECTED=MISMATCH
+OBSERVED=MISMATCH
+EXIT_CODE=1
+PASS=True
+STDOUT:
+{
+  "state": "MISMATCH",
+  "explanation": "Entry 1 hash does not match its contents.",
+  "observed_sha256": null
+}
+
+STDERR:
+
+
+CASE=restore
+EXPECTED=VALID
+OBSERVED=VALID
+EXIT_CODE=0
+PASS=True
+STDOUT:
+{
+  "state": "VALID",
+  "explanation": "Hash chain internally consistent (2 entries). Source authenticity, claim truth, runtime behavior, and production readiness are not established.",
+  "observed_sha256": "003e5488eebe80a2bb0093517a87b7cd6055bef406c27ece06e9282de17107d4"
+}
+
+STDERR:
+
+
+CASE=missing-file
+EXPECTED=UNKNOWN
+OBSERVED=UNKNOWN
+EXIT_CODE=1
+PASS=True
+STDOUT:
+{
+  "state": "UNKNOWN",
+  "explanation": "Hash-chain evidence is missing.",
+  "observed_sha256": null
+}
+
+STDERR:
+
+
+CASE=malformed-json
+EXPECTED=CORRUPTED
+OBSERVED=CORRUPTED
+EXIT_CODE=1
+PASS=True
+STDOUT:
+{
+  "state": "CORRUPTED",
+  "explanation": "Evidence is unreadable or invalid JSON.",
+  "observed_sha256": null
+}
+
+STDERR:
+
+
+RESTORE_BYTES_MATCH=True
+
+SOURCE_FIXTURE_UNCHANGED=True
+
+FIXTURE_SHA256=70928f5d9fa19d7f05f3d0334fa71113d08a636074d976c34d64a13d2d3f2857
+OVERALL=PASS
+CLAIM_LIMIT=Local demo only; not proof of production readiness.
