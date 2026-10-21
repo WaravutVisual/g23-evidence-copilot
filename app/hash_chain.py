@@ -49,6 +49,19 @@ def build_chain(payloads):
     return entries
 
 
+class DuplicateJSONKeyError(ValueError):
+    """Raised when a JSON object contains a duplicate key."""
+
+
+def _reject_duplicate_json_keys(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise DuplicateJSONKeyError(f"Duplicate JSON key: {key}")
+        result[key] = value
+    return result
+
+
 def verify_hash_chain(path, expected_head=None):
     source = Path(path)
 
@@ -68,9 +81,20 @@ def verify_hash_chain(path, expected_head=None):
         expected_head = expected_head.lower()
 
     try:
-        document = json.loads(source.read_text(encoding="utf-8"))
-    except (OSError, UnicodeError, json.JSONDecodeError):
-        return Result(State.CORRUPTED, "Evidence is unreadable or invalid JSON.")
+        document = json.loads(
+            source.read_text(encoding="utf-8"),
+            object_pairs_hook=_reject_duplicate_json_keys,
+        )
+    except (
+        OSError,
+        UnicodeError,
+        json.JSONDecodeError,
+        DuplicateJSONKeyError,
+    ):
+        return Result(
+            State.CORRUPTED,
+            "Evidence is unreadable, invalid JSON, or contains duplicate keys.",
+        )
 
     if not isinstance(document, dict):
         return Result(State.CORRUPTED, "Document must be a JSON object.")

@@ -91,6 +91,20 @@ class HashChainHardeningTests(unittest.TestCase):
         )
         self.assertEqual(result.state, State.CORRUPTED)
 
+    def test_duplicate_keys_in_raw_json_are_corrupted(self):
+        raw = (
+            '{"schema_version":1,"entries":['
+            '{"sequence":1,"sequence":2,'
+            '"payload":{"event":"test"},'
+            '"previous_hash":"' + "0" * 64 + '",'
+            '"entry_hash":"' + "0" * 64 + '"}'
+            ']}'
+        )
+
+        self.path.write_text(raw, encoding="utf-8")
+        result = verify_hash_chain(str(self.path))
+        self.assertEqual(result.state, State.CORRUPTED)
+
 
 if __name__ == "__main__":
     unittest.main()
