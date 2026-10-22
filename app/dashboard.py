@@ -31,6 +31,10 @@ h1{margin-bottom:4px} .muted{color:#9aa9c0}
 .good{color:#62e6a7}.warn{color:#ffd166}.bad{color:#ff8585}
 code{font-size:13px} footer{margin-top:20px;font-size:13px;color:#9aa9c0}
 button{background:#253653;color:white;border:1px solid #526681;padding:9px 13px;border-radius:8px}
+input{box-sizing:border-box;width:100%;padding:10px;border-radius:8px;
+border:1px solid #526681;background:#0b1020;color:#e7edf7}
+label{font-size:13px;color:#9aa9c0}
+
 </style>
 </head>
 <body><main>
@@ -42,7 +46,24 @@ button{background:#253653;color:white;border:1px solid #526681;padding:9px 13px;
 <section class="card"><div class="label">EVIDENCE VERIFICATION</div><div id="evidence" class="value">NOT_RUN</div><p id="explanation" class="muted">No verification result yet</p><p id="digest" class="muted"></p></section>
 <section class="card"><div class="label">LAST CHECK (UTC)</div><div id="checked" class="value">NOT_RUN</div><p id="error" class="muted"></p></section>
 </div>
+
 <p><button id="refresh">Check now</button></p>
+
+<section class="card">
+<h2>Verify an Artifact</h2>
+<p class="muted">ตรวจไฟล์ภายในโฟลเดอร์โปรเจกต์นี้เท่านั้น</p>
+<form id="verifyForm">
+<label for="artifactPath">Artifact path (relative to project)</label>
+<p><input id="artifactPath" required placeholder="examples/sample.bin"></p>
+<label for="referenceSha256">Reference SHA-256</label>
+<p><input id="referenceSha256" placeholder="64 hexadecimal characters"></p>
+<button type="submit">Verify artifact</button>
+</form>
+<p id="verifyState" class="value">NOT_RUN</p>
+<p id="verifyExplanation" class="muted">ยังไม่ได้ตรวจ Artifact</p>
+<p id="verifyDigest" class="muted"></p>
+</section>
+
 <footer>VALID proves only the defined check passed. It does not prove runtime correctness or production readiness. A missing artifact/reference remains UNKNOWN.</footer>
 </main>
 <script>
@@ -78,6 +99,31 @@ async function refreshStatus() {
   }
 }
 el("refresh").addEventListener("click", refreshStatus);
+el("verifyForm").addEventListener("submit", async event => {
+  event.preventDefault();
+  setText("verifyState", "CHECKING");
+  setText("verifyExplanation", "กำลังตรวจไฟล์...");
+  setText("verifyDigest", "");
+  try {
+    const response = await fetch("/api/verify", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        path: el("artifactPath").value.trim(),
+        sha256: el("referenceSha256").value.trim()
+      })
+    });
+    const result = await response.json();
+    setState("verifyState", result.state || "ERROR");
+    setText("verifyExplanation", result.explanation || result.error || "No explanation");
+    setText("verifyDigest", result.observed_sha256
+      ? "Observed SHA-256: " + result.observed_sha256 : "");
+  } catch (error) {
+    setState("verifyState", "ERROR");
+    setText("verifyExplanation", "Verification request failed: " + error.message);
+  }
+});
+
 refreshStatus();
 setInterval(refreshStatus, 5000);
 </script></body></html>"""
@@ -172,6 +218,63 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header("Cache-Control", "no-store")
         self.end_headers()
         self.wfile.write(body)
+
+
+    def do_POST(self):
+        route = urlparse(self.path).path
+        if route != "/api/verify":
+            self.send_error(404)
+            return
+
+        try:
+            length = int(self.headers.get("Content-Length", "0"))
+            if length < 1 or length > 16384:
+                self.send_error(400, "Invalid request size")
+                return
+
+            payload = json.loads(self.rfile.read(length))
+            if not isinstance(payload, dict):
+                self.send_error(400, "JSON object required")
+                return
+
+            raw_path = payload.get("path")
+            expected = payload.get("sha256")
+
+            if not isinstance(raw_path, str) or not raw_path.strip():
+                self.send_error(400, "Artifact path is required")
+                return
+            if expected is not None and not isinstance(expected, str):
+                self.send_error(400, "SHA-256 must be a string")
+                return
+
+            candidate = (ROOT / raw_path).resolve()
+            if not candidate.is_relative_to(ROOT.resolve()):
+                self.send_error(403, "Artifact path must stay inside project")
+                return
+
+            result = verify_artifact(
+                str(candidate),
+                expected.strip() if expected and expected.strip() else None,
+            )
+            body = json.dumps({
+                "state": result.state.value,
+                "explanation": result.explanation,
+                "observed_sha256": result.observed_sha256,
+                "scope_limit": (
+                    "Hash equality alone does not establish source authenticity, "
+                    "runtime correctness, or production readiness."
+                ),
+            }, ensure_ascii=False).encode("utf-8")
+
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json; charset=utf-8")
+            self.send_header("Content-Length", str(len(body)))
+            self.send_header("Cache-Control", "no-store")
+            self.end_headers()
+            self.wfile.write(body)
+
+        except (ValueError, TypeError, json.JSONDecodeError):
+            self.send_error(400, "Invalid verification request")
 
     def log_message(self, fmt, *args):
         print("[dashboard] " + (fmt % args))
