@@ -12,7 +12,7 @@ class State(str, Enum):
     CORRUPTED = "CORRUPTED"
 
 
-@dataclass
+@dataclass(frozen=True)
 class Result:
     state: State
     explanation: str

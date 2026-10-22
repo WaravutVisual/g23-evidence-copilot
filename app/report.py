@@ -8,6 +8,39 @@ from app.verifier import verify_artifact
 from app.ai_guardrail import build_guarded_result
 
 
+from collections.abc import Mapping
+
+
+class FrozenDict(dict):
+    """Dict-compatible container that rejects ordinary mutation."""
+
+    def _immutable(self, *args, **kwargs):
+        raise TypeError("Report data is immutable.")
+
+    __setitem__ = _immutable
+    __delitem__ = _immutable
+    clear = _immutable
+    pop = _immutable
+    popitem = _immutable
+    setdefault = _immutable
+    update = _immutable
+    __ior__ = _immutable
+
+
+def _freeze_report_value(value):
+    """Recursively freeze nested report values."""
+    if isinstance(value, Mapping):
+        return FrozenDict({
+            key: _freeze_report_value(item)
+            for key, item in value.items()
+        })
+    if isinstance(value, (list, tuple)):
+        return tuple(_freeze_report_value(item) for item in value)
+    if isinstance(value, set):
+        return frozenset(_freeze_report_value(item) for item in value)
+    return value
+
+
 def build_report(
     path: str,
     expected_sha256: str | None,
@@ -68,4 +101,4 @@ def build_report(
         guarded = build_guarded_result(result, ai_explainer)
         report["ai_explanation"] = guarded["ai_explanation"]
 
-    return report
+    return _freeze_report_value(report)
