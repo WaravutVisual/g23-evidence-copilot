@@ -1,0 +1,280 @@
+{
+  "schema_version": 1,
+  "timestamp_utc": "2026-10-26T15:14:16.922746+00:00",
+  "manifest": "evidence/audit/tamper-recovery-manifest-20261026T133836Z/manifest.json",
+  "checks": [
+    {
+      "check": "manifest_sha256",
+      "result": "PASS",
+      "detail": "actual=1355779e44d5071c50cc6b5874a106eb243160069d4a1eff29faef62a9f7c898"
+    },
+    {
+      "check": "schema_version",
+      "result": "PASS",
+      "detail": "value=1"
+    },
+    {
+      "check": "items_type",
+      "result": "PASS",
+      "detail": "type=list"
+    },
+    {
+      "check": "item[0]:sha256_format",
+      "result": "PASS",
+      "detail": "path=evidence/recheck/tamper-recovery-20261026T133550Z/source.sha256"
+    },
+    {
+      "check": "item[0]:size_format",
+      "result": "PASS",
+      "detail": "path=evidence/recheck/tamper-recovery-20261026T133550Z/source.sha256"
+    },
+    {
+      "check": "item[0]:expected_state_format",
+      "result": "PASS",
+      "detail": "path=evidence/recheck/tamper-recovery-20261026T133550Z/source.sha256"
+    },
+    {
+      "check": "sha256:evidence/recheck/tamper-recovery-20261026T133550Z/source.sha256",
+      "result": "PASS",
+      "detail": "hash matches manifest"
+    },
+    {
+      "check": "size:evidence/recheck/tamper-recovery-20261026T133550Z/source.sha256",
+      "result": "PASS",
+      "detail": "actual=96 bytes"
+    },
+    {
+      "check": "item[1]:sha256_format",
+      "result": "PASS",
+      "detail": "path=evidence/recheck/tamper-recovery-20261026T133550Z/copy-before.sha256"
+    },
+    {
+      "check": "item[1]:size_format",
+      "result": "PASS",
+      "detail": "path=evidence/recheck/tamper-recovery-20261026T133550Z/copy-before.sha256"
+    },
+    {
+      "check": "item[1]:expected_state_format",
+      "result": "PASS",
+      "detail": "path=evidence/recheck/tamper-recovery-20261026T133550Z/copy-before.sha256"
+    },
+    {
+      "check": "sha256:evidence/recheck/tamper-recovery-20261026T133550Z/copy-before.sha256",
+      "result": "PASS",
+      "detail": "hash matches manifest"
+    },
+    {
+      "check": "size:evidence/recheck/tamper-recovery-20261026T133550Z/copy-before.sha256",
+      "result": "PASS",
+      "detail": "actual=130 bytes"
+    },
+    {
+      "check": "item[2]:sha256_format",
+      "result": "PASS",
+      "detail": "path=evidence/recheck/tamper-recovery-20261026T133550Z/baseline.json"
+    },
+    {
+      "check": "item[2]:size_format",
+      "result": "PASS",
+      "detail": "path=evidence/recheck/tamper-recovery-20261026T133550Z/baseline.json"
+    },
+    {
+      "check": "item[2]:expected_state_format",
+      "result": "PASS",
+      "detail": "path=evidence/recheck/tamper-recovery-20261026T133550Z/baseline.json"
+    },
+    {
+      "check": "sha256:evidence/recheck/tamper-recovery-20261026T133550Z/baseline.json",
+      "result": "PASS",
+      "detail": "hash matches manifest"
+    },
+    {
+      "check": "size:evidence/recheck/tamper-recovery-20261026T133550Z/baseline.json",
+      "result": "PASS",
+      "detail": "actual=276 bytes"
+    },
+    {
+      "check": "state:evidence/recheck/tamper-recovery-20261026T133550Z/baseline.json",
+      "result": "PASS",
+      "detail": "expected='VALID' actual='VALID'"
+    },
+    {
+      "check": "item[3]:sha256_format",
+      "result": "PASS",
+      "detail": "path=evidence/recheck/tamper-recovery-20261026T133550Z/tampered.json"
+    },
+    {
+      "check": "item[3]:size_format",
+      "result": "PASS",
+      "detail": "path=evidence/recheck/tamper-recovery-20261026T133550Z/tampered.json"
+    },
+    {
+      "check": "item[3]:expected_state_format",
+      "result": "PASS",
+      "detail": "path=evidence/recheck/tamper-recovery-20261026T133550Z/tampered.json"
+    },
+    {
+      "check": "sha256:evidence/recheck/tamper-recovery-20261026T133550Z/tampered.json",
+      "result": "PASS",
+      "detail": "hash matches manifest"
+    },
+    {
+      "check": "size:evidence/recheck/tamper-recovery-20261026T133550Z/tampered.json",
+      "result": "PASS",
+      "detail": "actual=703 bytes"
+    },
+    {
+      "check": "item[4]:sha256_format",
+      "result": "PASS",
+      "detail": "path=evidence/recheck/tamper-recovery-20261026T133550Z/tampered.sha256"
+    },
+    {
+      "check": "item[4]:size_format",
+      "result": "PASS",
+      "detail": "path=evidence/recheck/tamper-recovery-20261026T133550Z/tampered.sha256"
+    },
+    {
+      "check": "item[4]:expected_state_format",
+      "result": "PASS",
+      "detail": "path=evidence/recheck/tamper-recovery-20261026T133550Z/tampered.sha256"
+    },
+    {
+      "check": "sha256:evidence/recheck/tamper-recovery-20261026T133550Z/tampered.sha256",
+      "result": "PASS",
+      "detail": "hash matches manifest"
+    },
+    {
+      "check": "size:evidence/recheck/tamper-recovery-20261026T133550Z/tampered.sha256",
+      "result": "PASS",
+      "detail": "actual=130 bytes"
+    },
+    {
+      "check": "item[5]:sha256_format",
+      "result": "PASS",
+      "detail": "path=evidence/recheck/tamper-recovery-20261026T133550Z/tampered-result.json"
+    },
+    {
+      "check": "item[5]:size_format",
+      "result": "PASS",
+      "detail": "path=evidence/recheck/tamper-recovery-20261026T133550Z/tampered-result.json"
+    },
+    {
+      "check": "item[5]:expected_state_format",
+      "result": "PASS",
+      "detail": "path=evidence/recheck/tamper-recovery-20261026T133550Z/tampered-result.json"
+    },
+    {
+      "check": "sha256:evidence/recheck/tamper-recovery-20261026T133550Z/tampered-result.json",
+      "result": "PASS",
+      "detail": "hash matches manifest"
+    },
+    {
+      "check": "size:evidence/recheck/tamper-recovery-20261026T133550Z/tampered-result.json",
+      "result": "PASS",
+      "detail": "actual=115 bytes"
+    },
+    {
+      "check": "state:evidence/recheck/tamper-recovery-20261026T133550Z/tampered-result.json",
+      "result": "PASS",
+      "detail": "expected='MISMATCH' actual='MISMATCH'"
+    },
+    {
+      "check": "item[6]:sha256_format",
+      "result": "PASS",
+      "detail": "path=evidence/recheck/tamper-recovery-20261026T133550Z/recovered.json"
+    },
+    {
+      "check": "item[6]:size_format",
+      "result": "PASS",
+      "detail": "path=evidence/recheck/tamper-recovery-20261026T133550Z/recovered.json"
+    },
+    {
+      "check": "item[6]:expected_state_format",
+      "result": "PASS",
+      "detail": "path=evidence/recheck/tamper-recovery-20261026T133550Z/recovered.json"
+    },
+    {
+      "check": "sha256:evidence/recheck/tamper-recovery-20261026T133550Z/recovered.json",
+      "result": "PASS",
+      "detail": "hash matches manifest"
+    },
+    {
+      "check": "size:evidence/recheck/tamper-recovery-20261026T133550Z/recovered.json",
+      "result": "PASS",
+      "detail": "actual=650 bytes"
+    },
+    {
+      "check": "item[7]:sha256_format",
+      "result": "PASS",
+      "detail": "path=evidence/recheck/tamper-recovery-20261026T133550Z/recovered.sha256"
+    },
+    {
+      "check": "item[7]:size_format",
+      "result": "PASS",
+      "detail": "path=evidence/recheck/tamper-recovery-20261026T133550Z/recovered.sha256"
+    },
+    {
+      "check": "item[7]:expected_state_format",
+      "result": "PASS",
+      "detail": "path=evidence/recheck/tamper-recovery-20261026T133550Z/recovered.sha256"
+    },
+    {
+      "check": "sha256:evidence/recheck/tamper-recovery-20261026T133550Z/recovered.sha256",
+      "result": "PASS",
+      "detail": "hash matches manifest"
+    },
+    {
+      "check": "size:evidence/recheck/tamper-recovery-20261026T133550Z/recovered.sha256",
+      "result": "PASS",
+      "detail": "actual=131 bytes"
+    },
+    {
+      "check": "item[8]:sha256_format",
+      "result": "PASS",
+      "detail": "path=evidence/recheck/tamper-recovery-20261026T133550Z/recovered-result.json"
+    },
+    {
+      "check": "item[8]:size_format",
+      "result": "PASS",
+      "detail": "path=evidence/recheck/tamper-recovery-20261026T133550Z/recovered-result.json"
+    },
+    {
+      "check": "item[8]:expected_state_format",
+      "result": "PASS",
+      "detail": "path=evidence/recheck/tamper-recovery-20261026T133550Z/recovered-result.json"
+    },
+    {
+      "check": "sha256:evidence/recheck/tamper-recovery-20261026T133550Z/recovered-result.json",
+      "result": "PASS",
+      "detail": "hash matches manifest"
+    },
+    {
+      "check": "size:evidence/recheck/tamper-recovery-20261026T133550Z/recovered-result.json",
+      "result": "PASS",
+      "detail": "actual=276 bytes"
+    },
+    {
+      "check": "state:evidence/recheck/tamper-recovery-20261026T133550Z/recovered-result.json",
+      "result": "PASS",
+      "detail": "expected='VALID' actual='VALID'"
+    },
+    {
+      "check": "source_sha256",
+      "result": "PASS",
+      "detail": "actual=70928f5d9fa19d7f05f3d0334fa71113d08a636074d976c34d64a13d2d3f2857"
+    },
+    {
+      "check": "source_recovery_match",
+      "result": "PASS",
+      "detail": "byte-for-byte comparison"
+    },
+    {
+      "check": "recovery_metadata",
+      "result": "PASS",
+      "detail": "declared=True actual=True"
+    }
+  ],
+  "failure_count": 0,
+  "result": "PASS",
+  "exit_code": 0
+}
