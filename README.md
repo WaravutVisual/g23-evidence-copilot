@@ -1,6 +1,12 @@
 # G23 Evidence Copilot
 
-An evidence-based software verification prototype.
+**G23 Evidence Copilot by WaravutVisual** is a software evidence verification and claim-control prototype.
+
+It uses deterministic checks to evaluate evidence artifacts, including SHA-256 integrity references and hash-chain verification. Its verification states are `VALID`, `UNKNOWN`, `MISMATCH`, and `CORRUPTED`.
+
+Optional AI-generated explanations are non-authoritative and cannot override deterministic verification results. `VALID` means only that the defined checks passed; it does not establish runtime correctness or production readiness.
+
+**Project scope:** general-purpose software verification and evidence integrity. This is not a medical AI copilot or a clinical decision-support system.
 
 ## Verification states
 
