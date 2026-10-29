@@ -1,11 +1,13 @@
 """Build a structured report without upgrading verification claims."""
 
+import os
 from datetime import datetime, timezone
 from hashlib import sha256
 import re
 
 from app.verifier import verify_artifact
 from app.ai_guardrail import build_guarded_result
+from app.meta_api import explain_verification
 
 
 from collections.abc import Mapping
@@ -47,6 +49,14 @@ def build_report(
     provenance,
     ai_explainer=None,
 ):
+    # Meta AI is opt-in. Its output remains untrusted and is
+    # passed through the existing guardrail below.
+    if (
+        ai_explainer is None
+        and os.environ.get("G23_META_AI", "").strip() == "1"
+    ):
+        ai_explainer = explain_verification
+
     result = verify_artifact(path, expected_sha256)
     observed_sha256 = result.observed_sha256
     generated_at = datetime.now(timezone.utc).isoformat()
